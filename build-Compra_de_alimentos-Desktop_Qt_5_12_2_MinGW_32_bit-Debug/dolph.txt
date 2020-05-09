@@ -1,0 +1,579 @@
+//Ejemplo recorrer contenedores
+/*#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+struct Persona{
+    string nombre;
+    int edad;
+};
+
+vector<Persona> cargarDatos(vector<Persona> contenedor){
+   Persona persona;
+   persona.nombre="Marcela";
+   persona.edad=43;
+   contenedor.push_back(persona);
+   persona.nombre="Joaquin";
+   persona.edad=28;
+   contenedor.push_back(persona);
+   persona.nombre="Ricardo";
+   persona.edad=26;
+   contenedor.push_back(persona);
+   persona.nombre="Jessica";
+   persona.edad=19;
+   contenedor.push_back(persona);
+   persona.nombre="Jonathan";
+   persona.edad=16;
+   contenedor.push_back(persona);
+   persona.nombre="Julia";
+   persona.edad=32;
+   contenedor.push_back(persona);
+   return contenedor;
+}
+
+
+void imprimir(vector<Persona> contenedor){
+   for (auto p = contenedor.rbegin(); p != contenedor.rend(); p++){
+       cout << "Nombre: " << p->nombre << " --- Edad: " << p->edad << endl;
+   }
+}
+
+
+int main()
+{
+   vector<Persona> participantes;
+   participantes=cargarDatos(participantes);
+   imprimir(participantes);
+   return 0;
+}*/
+
+//Segundo ejercicio.
+/*#include <iostream>
+#include <string>
+#include <map>
+
+using namespace std;
+
+struct Persona{
+    string nombre;
+    int legajo;
+};
+
+map<string,Persona> cargarDatos(map<string,Persona> contenedor){
+   Persona persona;
+   persona.nombre="Marcela Lagos";
+   persona.legajo=189;
+   contenedor["Marketing"]=persona;
+   persona.nombre="Joaquin Huerta";
+   persona.legajo=426;
+   contenedor["RR.HH."]=persona;
+   persona.nombre="Ricardo Gimenez";
+   persona.legajo=165;
+   contenedor["Administracion"]=persona;
+   persona.nombre="Jessica Williams";
+   persona.legajo=329;
+   contenedor["Capacitaciones"]=persona;
+   persona.nombre="Jonathan Rojas";
+   persona.legajo=253;
+   contenedor["Proyectos"]=persona;
+   persona.nombre="Julia Dominguez";
+   persona.legajo=397;
+   contenedor["Reclutadores"]=persona;
+   return contenedor;
+}
+
+
+void imprimir(map<string,Persona> contenedor){
+   for (auto par=begin(contenedor); par!=end(contenedor); par++){
+       cout << "Departamento: " << par->first << endl;
+       cout << "Jefe: " << par->second.nombre << " --- Legajo: " << par->second.legajo << endl << endl;
+   }
+}
+
+
+int main()
+{
+   map<string,Persona> jefes;
+   jefes=cargarDatos(jefes);
+   imprimir(jefes);
+   return 0;
+}*/
+
+
+//Tercer ejemplo
+/*
+#include <iostream>
+#include <string>
+#include <map>
+#include <vector>
+
+using namespace std;
+
+struct Persona{
+    string nombre;
+    int legajo;
+};
+
+map<string,vector<Persona>> cargarDatos(map<string,vector<Persona>> contenedor){
+   Persona persona;
+
+   persona.nombre="Marcela Lagos";
+   persona.legajo=189;
+   contenedor["Administracion"].push_back(persona);
+
+   persona.nombre="Joaquin Huerta";
+   persona.legajo=426;
+   contenedor["Produccion"].push_back(persona);
+
+   persona.nombre="Ricardo Gimenez";
+   persona.legajo=165;
+   contenedor["Administracion"].push_back(persona);
+
+   persona.nombre="Jessica Williams";
+   persona.legajo=329;
+   contenedor["Capacitaciones"].push_back(persona);
+
+   persona.nombre="Jonathan Rojas";
+   persona.legajo=253;
+   contenedor["Produccion"].push_back(persona);
+
+   persona.nombre="Julia Dominguez";
+   persona.legajo=397;
+   contenedor["Capacitaciones"].push_back(persona);
+
+   persona.nombre="Rodolfo Quinteros";
+   persona.legajo=562;
+   contenedor["Produccion"].push_back(persona);
+
+   return contenedor;
+}
+
+
+void imprimir(map<string,vector<Persona>> contenedor){
+    for (auto par = begin(contenedor); par != end(contenedor); par++){
+        cout << endl << "***Area: " << par->first << endl;
+        for (auto emp = begin(par->second); emp != end(par->second); emp++){
+            cout << "Nombre: " << emp->nombre << " - Legajo: " << emp->legajo << endl;
+        }
+    }
+}
+
+
+int main()
+{
+   map<string,vector<Persona>> empleados;
+   empleados=cargarDatos(empleados);
+   imprimir(empleados);
+   return 0;
+}*/
+
+
+//Cuarto Ejemplo
+/*#include <iostream>
+#include <string>
+#include <map>
+#include <vector>
+
+using namespace std;
+
+struct Persona{
+    string nombre;
+    int legajo;
+};
+
+map<string,vector<Persona>> cargarDatos(map<string,vector<Persona>> contenedor){
+    Persona persona;
+
+    persona.nombre="Marcela Lagos";
+    persona.legajo=189;
+    contenedor["Administracion"].push_back(persona);
+
+    persona.nombre="Joaquin Huerta";
+    persona.legajo=426;
+    contenedor["Produccion"].push_back(persona);
+
+    persona.nombre="Ricardo Gimenez";
+    persona.legajo=165;
+    contenedor["Administracion"].push_back(persona);
+
+    persona.nombre="Jessica Williams";
+    persona.legajo=329;
+    contenedor["Capacitaciones"].push_back(persona);
+
+    persona.nombre="Jonathan Rojas";
+    persona.legajo=253;
+    contenedor["Produccion"].push_back(persona);
+
+    persona.nombre="Julia Dominguez";
+    persona.legajo=397;
+    contenedor["Capacitaciones"].push_back(persona);
+
+    persona.nombre="Rodolfo Quinteros";
+    persona.legajo=562;
+    contenedor["Produccion"].push_back(persona);
+
+    return contenedor;
+}
+
+
+vector<Persona> insertarOrdenado(vector<Persona> v, Persona p){
+    auto elemento = begin(v);
+    while ((elemento != end(v)) and ((*elemento).legajo <= p.legajo)){
+        elemento++;
+    }
+    Persona x;
+    x.nombre="Alma Marcela Gozo";
+    x.legajo=798;
+    v.insert(elemento, x);
+
+    return v;
+}
+
+
+vector<Persona> filtrarEmpleados(vector<Persona> empleadosArea){
+    vector<Persona> nuevo;
+    for (auto emp = begin(empleadosArea); emp != end(empleadosArea); emp++){
+        nuevo=insertarOrdenado(nuevo, (*emp));
+    }
+    return nuevo;
+}
+
+
+void imprimir(vector<Persona> contenedor){
+    for (auto emp = begin(contenedor); emp != end(contenedor); emp++){
+        cout << "Nombre: " << emp->nombre << " - Legajo: " << emp->legajo << endl;
+    }
+}
+
+
+int main()
+{
+    map<string,vector<Persona>> empleados;
+    empleados=cargarDatos(empleados);
+
+    vector<Persona> filtrado;
+    string area;
+    cout << "Area a filtrar: ";
+    cin >> area;
+    filtrado=filtrarEmpleados(empleados[area]);
+
+    imprimir(filtrado);
+
+    return 0;
+}*/
+
+
+//Quinto Ejemplo
+/*#include <iostream>
+#include <string>
+#include <map>
+#include <vector>
+
+using namespace std;
+
+struct Persona{
+    string nombre;
+    int legajo;
+};
+
+map<string,vector<Persona>> cargarDatos(map<string,vector<Persona>> contenedor){
+    Persona persona;
+
+    persona.nombre="Marcela Lagos";
+    persona.legajo=189;
+    contenedor["Administracion"].push_back(persona);
+
+    persona.nombre="Joaquin Huerta";
+    persona.legajo=426;
+    contenedor["Produccion"].push_back(persona);
+
+    persona.nombre="Ricardo Gimenez";
+    persona.legajo=165;
+    contenedor["Administracion"].push_back(persona);
+
+    persona.nombre="Jessica Williams";
+    persona.legajo=329;
+    contenedor["Capacitaciones"].push_back(persona);
+
+    persona.nombre="Jonathan Rojas";
+    persona.legajo=253;
+    contenedor["Produccion"].push_back(persona);
+
+    persona.nombre="Julia Dominguez";
+    persona.legajo=397;
+    contenedor["Capacitaciones"].push_back(persona);
+
+    persona.nombre="Rodolfo Quinteros";
+    persona.legajo=562;
+    contenedor["Produccion"].push_back(persona);
+
+    persona.nombre="Estela Moreno";
+    persona.legajo=716;
+    contenedor["Produccion"].push_back(persona);
+
+    persona.nombre="Marcelo Ramirez";
+    persona.legajo=296;
+    contenedor["Produccion"].push_back(persona);
+
+    return contenedor;
+}
+
+
+vector<Persona> insertarOrdenado(vector<Persona> v, Persona p){
+    auto elemento = begin(v);
+    while ((elemento != end(v)) and ((*elemento).legajo <= p.legajo)){
+        elemento++;
+    }
+    if (elemento == end(v)){
+        v.push_back(p);
+    }
+    else{
+        v.insert(elemento, p);
+    }
+    return v;
+}
+
+
+vector<Persona> filtrarEmpleados(map<string,vector<Persona>> empleados, string area){
+    vector<Persona> nuevo;
+    for (auto emp = begin(empleados[area]); emp != end(empleados[area]); emp++){
+        nuevo=insertarOrdenado(nuevo, (*emp));
+    }
+    return nuevo;
+}
+
+
+void imprimir(vector<Persona> contenedor){
+    for (auto emp = begin(contenedor); emp != end(contenedor); emp++){
+        cout << "Nombre: " << emp->nombre << " - Legajo: " << emp->legajo << endl;
+    }
+}
+
+
+vector<Persona> eliminarPorDigito(vector<Persona> contenedor, int digito){
+    auto p = begin(contenedor);
+    while (p != end(contenedor)){
+        if ((*p).legajo % 10 == digito){
+            p = contenedor.erase(p);
+        }
+        else{
+            p++;
+        }
+    }
+    return contenedor;
+}
+
+
+int main()
+{
+    map<string,vector<Persona>> empleados;
+    empleados=cargarDatos(empleados);
+
+    string area;
+    cout << "Area a filtrar: ";
+    cin >> area;
+    vector<Persona> filtrado;
+    filtrado=filtrarEmpleados(empleados, area);
+
+    imprimir(filtrado);
+
+    int digito;
+    cout << "Ultimo digito a eliminar: ";
+    cin >> digito;
+    filtrado=eliminarPorDigito(filtrado, digito);
+
+    imprimir(filtrado);
+
+    return 0;
+}*/
+
+//Sexto Ejemplo
+/*
+#include <iostream>
+#include <string>
+#include <map>
+#include <vector>
+
+using namespace std;
+
+struct Persona{
+    string nombre;
+    int legajo;
+};
+
+map<string,vector<Persona>> cargarDatos(map<string,vector<Persona>> contenedor){
+    Persona persona;
+
+    persona.nombre="Marcela Lagos";
+    persona.legajo=189;
+    contenedor["Administracion"].push_back(persona);
+
+    persona.nombre="Joaquin Huerta";
+    persona.legajo=426;
+    contenedor["Produccion"].push_back(persona);
+
+    persona.nombre="Ricardo Gimenez";
+    persona.legajo=165;
+    contenedor["Administracion"].push_back(persona);
+
+    persona.nombre="Jessica Williams";
+    persona.legajo=329;
+    contenedor["Capacitaciones"].push_back(persona);
+
+    persona.nombre="Jonathan Rojas";
+    persona.legajo=253;
+    contenedor["Produccion"].push_back(persona);
+
+    persona.nombre="Julia Dominguez";
+    persona.legajo=397;
+    contenedor["Capacitaciones"].push_back(persona);
+
+    persona.nombre="Rodolfo Quinteros";
+    persona.legajo=562;
+    contenedor["Produccion"].push_back(persona);
+
+    persona.nombre="Estela Moreno";
+    persona.legajo=716;
+    contenedor["Produccion"].push_back(persona);
+
+    persona.nombre="Marcelo Ramirez";
+    persona.legajo=296;
+    contenedor["Produccion"].push_back(persona);
+
+    return contenedor;
+}
+
+
+vector<Persona> insertarOrdenado(vector<Persona> v, Persona p){
+    auto elemento = begin(v);
+    while ((elemento != end(v)) and ((*elemento).legajo <= p.legajo)){
+        elemento++;
+    }
+    if (elemento == end(v)){
+        v.push_back(p);
+    }
+    else{
+        v.insert(elemento, p);
+    }
+    return v;
+}
+
+
+vector<Persona> filtrarEmpleados(map<string,vector<Persona>> empleados, string area){
+    vector<Persona> nuevo;
+    for (auto emp = begin(empleados[area]); emp != end(empleados[area]); emp++){
+        nuevo=insertarOrdenado(nuevo, (*emp));
+    }
+    return nuevo;
+}
+
+
+void imprimir(vector<Persona> contenedor){
+    for (auto emp = begin(contenedor); emp != end(contenedor); emp++){
+        cout << "Nombre: " << emp->nombre << " - Legajo: " << emp->legajo << endl;
+    }
+}
+
+
+int main()
+{
+    map<string,vector<Persona>> empleados;
+    empleados=cargarDatos(empleados);
+
+    string area;
+    do{
+        cout << "Area a filtrar: ";
+        cin >> area;
+    } while (empleados.find(area) == end(empleados));
+
+    vector<Persona> filtrado;
+    filtrado=filtrarEmpleados(empleados, area);
+
+    imprimir(filtrado);
+
+    return 0;
+}*/
+
+//Septimo Ejemplo
+/*#include <iostream>
+#include <string>
+#include <map>
+#include <vector>
+
+using namespace std;
+
+struct Persona{
+    string nombre;
+    int legajo;
+};
+
+map<string,vector<Persona>> cargarDatos(map<string,vector<Persona>> contenedor){
+    Persona persona;
+
+    persona.nombre="Marcela Lagos";
+    persona.legajo=189;
+    contenedor["Administracion"].push_back(persona);
+
+    persona.nombre="Joaquin Huerta";
+    persona.legajo=426;
+    contenedor["Produccion"].push_back(persona);
+
+    persona.nombre="Ricardo Gimenez";
+    persona.legajo=165;
+    contenedor["Administracion"].push_back(persona);
+
+    persona.nombre="Jessica Williams";
+    persona.legajo=329;
+    contenedor["Capacitaciones"].push_back(persona);
+
+    persona.nombre="Jonathan Rojas";
+    persona.legajo=253;
+    contenedor["Produccion"].push_back(persona);
+
+    persona.nombre="Julia Dominguez";
+    persona.legajo=397;
+    contenedor["Capacitaciones"].push_back(persona);
+
+    persona.nombre="Rodolfo Quinteros";
+    persona.legajo=562;
+    contenedor["Produccion"].push_back(persona);
+
+    persona.nombre="Estela Moreno";
+    persona.legajo=716;
+    contenedor["Produccion"].push_back(persona);
+
+    persona.nombre="Marcelo Ramirez";
+    persona.legajo=296;
+    contenedor["Produccion"].push_back(persona);
+
+    return contenedor;
+}
+
+
+int cantidadConInicial(map<string,vector<Persona>> contenedor, char letra){
+    int cantidad=0;
+    for (auto par: contenedor){
+        for (Persona empleado: par.second){
+            if (empleado.nombre[0]==letra){
+                cantidad++;
+            }
+        }
+    }
+    return cantidad;
+}
+
+
+int main()
+{
+    map<string,vector<Persona>> empleados;
+    empleados=cargarDatos(empleados);
+
+    char letra;
+    cout << "Inicial a buscar: ";
+    cin >> letra;
+    cout << "Hay " << cantidadConInicial(empleados, letra) << " empleados cuyos nombres empiezan con " << letra << endl;
+
+    return 0;
+}*/
